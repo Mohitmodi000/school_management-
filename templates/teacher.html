@@ -1,0 +1,209 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teacher Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        .navbar {
+            background: #173b6c;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            background: #f4c542;
+            color: #173b6c;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            color: #173b6c;
+        }
+
+        .count {
+            background: #173b6c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #173b6c;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f8fbff;
+        }
+
+        .teacher-name {
+            font-weight: bold;
+            color: #173b6c;
+        }
+
+        .subject {
+            background: #fff4c7;
+            color: #735b00;
+            padding: 6px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>🏫 School Management System</h2>
+
+        <a href="{% url 'index' %}" class="back-btn">
+            ← Dashboard
+        </a>
+    </div>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Teacher Dashboard</h1>
+
+            <div class="count">
+                Total Teachers: {{ teachers|length }}
+            </div>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Teacher Name</th>
+                        <th>Subject</th>
+                        <th>Email</th>
+                        <th>Class Assigned</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for i in teachers %}
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+
+                        <td class="teacher-name">
+                            {{ i.first_name }} {{ i.last_name }}
+                        </td>
+
+                        <td>
+                            <span class="subject">
+                                {{ i.get_subject_display }}
+                            </span>
+                        </td>
+
+                        <td>
+                            {{ i.email }}
+                        </td>
+
+                        <td>
+                            {{ i.class_assigned }}
+                        </td>
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="5" class="empty">
+                            No teachers found.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+```

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>School Management | Create Account</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #f4f7fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    /* Main Container */
+    .register-container {
+        width: 900px;
+        min-height: 540px;
+        background: white;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Left Section */
+    .left-section {
+        background: linear-gradient(145deg, #173b6c, #285b99);
+        color: white;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left-section::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        top: -80px;
+        left: -80px;
+    }
+
+    .left-section::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(244, 197, 66, 0.08);
+        bottom: -130px;
+        right: -100px;
+    }
+
+    .school-icon {
+        width: 65px;
+        height: 65px;
+        background: #f4c542;
+        color: #173b6c;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .left-section h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .left-section p {
+        color: #dce8f8;
+        line-height: 1.7;
+        font-size: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .features {
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature {
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: #e7eff9;
+    }
+
+    /* Right Section */
+    .right-section {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right-section h2 {
+        color: #173b6c;
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    /* Form */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 13px 15px;
+        border: 1px solid #d7dee8;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    .form-group input:focus {
+        border-color: #285b99;
+        box-shadow: 0 0 0 3px rgba(40, 91, 153, 0.1);
+    }
+
+    .form-group input::placeholder {
+        color: #aaa;
+    }
+
+    /* Create Account Button */
+    .register-btn {
+        width: 100%;
+        border: none;
+        background: #173b6c;
+        color: white;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 5px;
+    }
+
+    .register-btn:hover {
+        background: #f4c542;
+        color: #173b6c;
+    }
+
+    /* Error */
+    .error {
+        color: #dc2626;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        padding: 10px;
+        border-radius: 7px;
+        margin-top: 15px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    /* Login Link */
+    .login-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .login-link a {
+        color: #173b6c;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .login-link a:hover {
+        color: #f0b900;
+    }
+
+    /* Responsive */
+    @media (max-width: 750px) {
+
+        .register-container {
+            width: 100%;
+            grid-template-columns: 1fr;
+        }
+
+        .left-section {
+            padding: 35px;
+            min-height: 300px;
+        }
+
+        .left-section h1 {
+            font-size: 27px;
+        }
+
+        .features {
+            display: none;
+        }
+
+        .right-section {
+            padding: 40px 30px;
+        }
+    }
+
+    @media (max-width: 450px) {
+
+        .left-section {
+            padding: 30px 25px;
+        }
+
+        .right-section {
+            padding: 35px 25px;
+        }
+
+        .left-section h1 {
+            font-size: 24px;
+        }
+
+        .right-section h2 {
+            font-size: 26px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="register-container">
+
+    <!-- Left Section -->
+    <div class="left-section">
+
+        <div class="school-icon">
+            🎓
+        </div>
+
+        <h1>Join Our School</h1>
+
+        <p>
+            Create your account and get access to the
+            School Management System. Manage students,
+            teachers, classes and academic activities easily.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                ✓ Easy Student Management
+            </div>
+
+            <div class="feature">
+                ✓ Teacher & Class Management
+            </div>
+
+            <div class="feature">
+                ✓ Attendance Tracking
+            </div>
+
+            <div class="feature">
+                ✓ Secure Account Access
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Right Section -->
+    <div class="right-section">
+
+        <h2>Create Account ✨</h2>
+
+        <p class="subtitle">
+            Register to access the school dashboard
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+        </form>
+
+
+        {% if error %}
+
+            <p class="error">
+                {{ error }}
+            </p>
+
+        {% endif %}
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>

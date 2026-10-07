@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>All Students | School Management</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+
+    /* Navbar */
+
+    .navbar {
+        height: 70px;
+        background: #173b6c;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 40px;
+
+        box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-icon {
+        width: 42px;
+        height: 42px;
+
+        background: #f4c542;
+        color: #173b6c;
+
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .back-btn {
+        color: white;
+        text-decoration: none;
+
+        border: 1px solid rgba(255,255,255,0.5);
+
+        padding: 9px 17px;
+
+        border-radius: 7px;
+
+        transition: 0.3s;
+    }
+
+    .back-btn:hover {
+        background: #f4c542;
+        color: #173b6c;
+        border-color: #f4c542;
+    }
+
+
+    /* Main */
+
+    .container {
+        max-width: 1150px;
+        margin: 40px auto;
+        padding: 0 25px;
+    }
+
+
+    /* Header */
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 25px;
+    }
+
+    .page-header h1 {
+        color: #173b6c;
+        font-size: 30px;
+    }
+
+    .page-header p {
+        color: #777;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+
+    /* Student Count */
+
+    .student-count {
+        background: white;
+
+        padding: 12px 18px;
+
+        border-radius: 8px;
+
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+
+        color: #173b6c;
+
+        font-weight: bold;
+    }
+
+
+    /* Table */
+
+    .table-container {
+        background: white;
+
+        border-radius: 14px;
+
+        overflow-x: auto;
+
+        box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        min-width: 700px;
+    }
+
+    thead {
+        background: #173b6c;
+        color: white;
+    }
+
+    th {
+        padding: 16px;
+
+        text-align: left;
+
+        font-size: 14px;
+    }
+
+    td {
+        padding: 16px;
+
+        border-bottom: 1px solid #edf0f4;
+
+        font-size: 14px;
+    }
+
+    tbody tr {
+        transition: 0.2s;
+    }
+
+    tbody tr:hover {
+        background: #f8fafc;
+    }
+
+
+    /* Roll Number */
+
+    .roll {
+        font-weight: bold;
+        color: #173b6c;
+    }
+
+
+    /* Student Name */
+
+    .student-name {
+        font-weight: bold;
+        color: #27364b;
+    }
+
+
+    /* Class Badge */
+
+    .class-badge {
+        background: #eaf1fb;
+
+        color: #173b6c;
+
+        padding: 6px 10px;
+
+        border-radius: 6px;
+
+        font-size: 12px;
+
+        font-weight: bold;
+    }
+
+
+    /* Empty */
+
+    .empty {
+        text-align: center;
+
+        padding: 40px;
+
+        color: #777;
+    }
+
+
+    /* Mobile */
+
+    @media (max-width: 700px) {
+
+        .navbar {
+            padding: 0 20px;
+        }
+
+        .logo h2 {
+            font-size: 16px;
+        }
+
+        .container {
+            margin-top: 25px;
+        }
+
+        .page-header {
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .page-header h1 {
+            font-size: 24px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Navbar -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            S
+        </div>
+
+        <h2>
+            School Management
+        </h2>
+
+    </div>
+
+
+    <a href="{% url 'index' %}" class="back-btn">
+        ← Dashboard
+    </a>
+
+</nav>
+
+
+
+<!-- Main Content -->
+
+<main class="container">
+
+
+    <!-- Page Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                👨‍🎓 All Students
+            </h1>
+
+            <p>
+                View and manage registered students
+            </p>
+
+        </div>
+
+
+        <div class="student-count">
+
+            Total Students:
+            {{ students|length }}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Student Table -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Roll No.
+                    </th>
+
+                    <th>
+                        Student Name
+                    </th>
+
+                    <th>
+                        Class
+                    </th>
+
+                    <th>
+                        Date of Birth
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for s in students %}
+
+                <tr>
+
+                    <td class="roll">
+                        #{{ s.id }}
+                    </td>
+
+
+                    <td class="student-name">
+
+                        {{ s.first_name }}
+                        {{ s.last_name }}
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="class-badge">
+                            Class {{ s.class_name }}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ s.date_of_birth }}
+
+                    </td>
+
+                </tr>
+
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="4" class="empty">
+
+                        🎓 No students found.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</main>
+```
+
+</body>
+
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>School Management System</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+
+    /* Navbar */
+    .navbar {
+        height: 70px;
+        background: #173b6c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-icon {
+        width: 42px;
+        height: 42px;
+        background: #f4c542;
+        color: #173b6c;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .logo h2 {
+        font-size: 21px;
+    }
+
+    .user-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .username {
+        font-size: 15px;
+    }
+
+    .logout {
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.5);
+        padding: 9px 18px;
+        border-radius: 7px;
+        transition: 0.3s;
+    }
+
+    .logout:hover {
+        background: #f4c542;
+        color: #173b6c;
+        border-color: #f4c542;
+    }
+
+    /* Main */
+    .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 25px;
+    }
+
+    .welcome {
+        background: linear-gradient(135deg, #173b6c, #285b99);
+        color: white;
+        padding: 35px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .welcome::after {
+        content: "🎓";
+        position: absolute;
+        right: 50px;
+        top: 20px;
+        font-size: 100px;
+        opacity: 0.12;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .welcome p {
+        color: #dce8f8;
+        font-size: 16px;
+    }
+
+    /* Cards */
+    .section-title {
+        margin-bottom: 18px;
+        font-size: 22px;
+        color: #173b6c;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+        transition: 0.3s;
+        border: 1px solid #e7edf5;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.11);
+    }
+
+    .card-icon {
+        width: 48px;
+        height: 48px;
+        background: #eaf1fb;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #173b6c;
+        margin-bottom: 8px;
+    }
+
+    .card p {
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .card a {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #173b6c;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 50px;
+        color: #777;
+        font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .navbar {
+            padding: 0 18px;
+        }
+
+        .logo h2 {
+            font-size: 16px;
+        }
+
+        .username {
+            display: none;
+        }
+
+        .container {
+            margin-top: 25px;
+        }
+
+        .welcome {
+            padding: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 24px;
+        }
+
+        .cards {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Navbar -->
+<nav class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">S</div>
+        <h2>School Management</h2>
+    </div>
+
+    <div class="user-section">
+        <span class="username">
+            👤 {{ request.user.username }}
+        </span>
+
+        <a href="/logout/" class="logout">
+            Logout
+        </a>
+    </div>
+
+</nav>
+
+
+<!-- Main Content -->
+<main class="container">
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+
+        <h1>
+            Welcome, {{ request.user.username }} 👋
+        </h1>
+
+        <p>
+            Welcome to your School Management Dashboard.
+            Manage students, teachers, classes and school activities from one place.
+        </p>
+
+    </section>
+
+
+    <!-- Management Section -->
+    <h2 class="section-title">School Management</h2>
+
+    <div class="cards">
+
+        <!-- Students -->
+        <div class="card">
+
+            <div class="card-icon">👨‍🎓</div>
+
+            <h3>Students</h3>
+
+            <p>
+                Manage student information, admissions,
+                attendance and academic records.
+            </p>
+
+            <a href="{% url 'students' %}">
+                Manage Students →
+            </a>
+
+        </div>
+
+
+        <!-- Teachers -->
+        <div class="card">
+
+            <div class="card-icon">👨‍🏫</div>
+
+            <h3>Teachers</h3>
+
+            <p>
+                Manage teachers, their profiles,
+                subjects and assigned classes.
+            </p>
+
+            <a href="{% url 'teacher' %}">
+                Manage Teachers →
+            </a>
+
+        </div>
+
+
+        <!-- Classes -->
+        <div class="card">
+
+            <div class="card-icon">🏫</div>
+
+            <h3>Classes</h3>
+
+            <p>
+                Organize classes, sections,
+                subjects and classroom information.
+            </p>
+
+            <a href="{%url 'classes'%}">
+                Manage Classes →
+            </a>
+
+        </div>
+
+
+        <!-- Attendance -->
+        <div class="card">
+
+            <div class="card-icon">📋</div>
+
+            <h3>Attendance</h3>
+
+            <p>
+                Track student attendance and
+                maintain daily attendance records.
+            </p>
+
+            <a href="#">
+                View Attendance →
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Footer -->
+<footer>
+    © 2026 School Management System | All Rights Reserved
+</footer>
+```
+
+</body>
+</html>
